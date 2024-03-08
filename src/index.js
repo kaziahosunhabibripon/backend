@@ -1,42 +1,24 @@
-import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./db/index.js";
 
-const app = express();
-const port = process.env.PORT || 8000;
+dotenv.config({
+  path: ".env",
+});
+connectDB();
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the Jokes API!");
-});
-app.get("/api/v1/jokes", (req, res) => {
-  const jokes = [
-    {
-      id: 1,
-      title: "I'm a joke",
-      content: "This is a news joke ",
-    },
-    {
-      id: 2,
-      title: "Another a joke",
-      content: "This is a part of joke ",
-    },
-    {
-      id: 3,
-      title: "New  a joke",
-      content: "New a part of joke ",
-    },
-    {
-      id: 4,
-      title: "Old  a joke",
-      content: "Old a part of joke ",
-    },
-    {
-      id: 5,
-      title: "Adult  a joke",
-      content: "Adult a part of joke ",
-    },
-  ];
-  res.send(jokes);
-});
-
-app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`);
-});
+/*
+(async () => {
+  try {
+    await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`);
+    app.on("error", (error) => {
+      console.log("Error: ", error);
+      throw error;
+    });
+    app.listen(process.env.PORT, () => {
+      console.log(`Server is running on port ${process.env.PORT}`);
+    });
+  } catch (error) {
+    console.log("Error: ", error);
+    throw error;
+  }
+})();*/
